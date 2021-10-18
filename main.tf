@@ -54,6 +54,9 @@ resource "aws_default_security_group" "default" {
   tags = {
     Name = "allow Pub SG"
   }
+  depends_on = [
+    aws_security_group.allow_http
+  ]
 
 }
 
