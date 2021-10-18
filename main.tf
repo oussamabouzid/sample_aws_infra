@@ -54,9 +54,7 @@ resource "aws_default_security_group" "default" {
   tags = {
     Name = "allow Pub SG"
   }
-  depends_on = [
-    aws_security_group.allow_http
-  ]
+  revoke_rules_on_delete = true
 
 }
 
@@ -98,6 +96,8 @@ resource "aws_security_group" "allow_http" {
   tags = {
     Name = "allow_internet_access"
   }
+  revoke_rules_on_delete = true
+
 
 }
 
@@ -381,7 +381,7 @@ resource "aws_instance" "web" {
   }
   user_data_base64 = "IyEgL2Jpbi9iYXNoCiAgICB5dW0gdXBkYXRlIC15CgkJeXVtIC15IGluc3RhbGwgaHR0cGQKCQlzeXN0ZW1jdGwgc3RhcnQgaHR0cGQKCQlzeXN0ZW1jdGwgZW5hYmxlIGh0dHBkCgkJZWNobyAnPGh0bWw+PGgxPkhlbGxvIGZyb20gQVdTICE8L2gxPjwvaHRtbD4nID4gL3Zhci93d3cvaHRtbC9pbmRleC5odG1s"
   tags = {
-    Name = "Front WEB"
+    Name = "Jumb box"
   }
   depends_on = [
     aws_security_group.allow_http
