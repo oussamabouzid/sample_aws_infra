@@ -9,7 +9,7 @@ output "aws_lb" {
 }
 
 output "private-ips" {
-  description = "The public IP addresses of the main jumpbox instance."
+  description = "The private IP addresses of the main jumpbox instance."
 
   value = data.aws_instance.asg-instances.*.private_ip
 }
