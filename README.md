@@ -74,4 +74,4 @@ No modules.
 |------|-------------|
 | <a name="output_aws_lb"></a> [aws\_lb](#output\_aws\_lb) | The public DNS of the frontal LoadBalancer |
 | <a name="output_jumpbox_ip_addr"></a> [jumpbox\_ip\_addr](#output\_jumpbox\_ip\_addr) | The public IP address of the main jumpbox instance. |
-| <a name="output_private-ips"></a> [private-ips](#output\_private-ips) | The public IP addresses of the main jumpbox instance. |
+| <a name="output_private-ips"></a> [private-ips](#output\_private-ips) | The private IP addresses of the main jumpbox instance. |
