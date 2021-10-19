@@ -362,7 +362,7 @@ resource "aws_lb_listener" "front_end" {
 
 
 
-resource "aws_instance" "web" {
+resource "aws_instance" "jumpbox" {
   ami                         = data.aws_ami.amazon_linux.id
   instance_type               = var.ec2-instance-type
   subnet_id                   = aws_subnet.pb-subnet-1.id
@@ -375,7 +375,7 @@ resource "aws_instance" "web" {
     http_endpoint = "enabled"
     http_tokens   = "required"
   }
-  ebs_optimized = true
+  ebs_optimized = false
   root_block_device {
     encrypted = true
   }
@@ -383,6 +383,7 @@ resource "aws_instance" "web" {
   tags = {
     Name = "Jumb box"
   }
+  key_name = var.public-key-name
   depends_on = [
     aws_security_group.allow_http
   ]
@@ -391,4 +392,17 @@ resource "aws_instance" "web" {
 
 
   #checkov:skip=CKV_AWS_88:Public EC2
+}
+data "aws_instances" "nodes" {
+  depends_on = [aws_autoscaling_group.asg]
+
+  instance_tags = {
+    Name = "CreatedByASG"
+  }
+
+}
+data "aws_instance" "asg-instances" {
+  count       = var.asg-min
+  depends_on  = [data.aws_instances.nodes]
+  instance_id = data.aws_instances.nodes.ids[count.index]
 }

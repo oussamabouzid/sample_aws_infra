@@ -22,7 +22,7 @@ No modules.
 | [aws_autoscaling_group.asg](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group) | resource |
 | [aws_default_security_group.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group) | resource |
 | [aws_eip.elp](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eip) | resource |
-| [aws_instance.web](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
+| [aws_instance.jumpbox](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
 | [aws_internet_gateway.igw](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway) | resource |
 | [aws_launch_configuration.be-as-conf](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration) | resource |
 | [aws_lb.be-elb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb) | resource |
@@ -44,6 +44,8 @@ No modules.
 | [aws_vpc.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc) | resource |
 | [aws_ami.amazon_linux](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
 | [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
+| [aws_instance.asg-instances](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/instance) | data source |
+| [aws_instances.nodes](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/instances) | data source |
 
 ## Inputs
 
@@ -61,4 +63,8 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_aws_lb"></a> [aws\_lb](#output\_aws\_lb) | The public DNS of the frontal LoadBalancer |
+| <a name="output_jumpbox_ip_addr"></a> [jumpbox\_ip\_addr](#output\_jumpbox\_ip\_addr) | The public IP address of the main jumpbox instance. |
+| <a name="output_private-ips"></a> [private-ips](#output\_private-ips) | The public IP addresses of the main jumpbox instance. |
