@@ -5,8 +5,6 @@ resource "aws_vpc" "main" {
   tags = {
     Name = "TEK-UP"
   }
-  #checkov:skip=CKV2_AWS_12:Exposed to internet
-  #checkov:skip=CKV2_AWS_11:For this lab no need for flow logging
 }
 
 data "aws_availability_zones" "available" {}
@@ -190,7 +188,6 @@ resource "aws_subnet" "pb-subnet-1" {
   tags = {
     Name = "Public Subnet 01"
   }
-  #checkov:skip=CKV_AWS_130:Public subnet
   availability_zone       = data.aws_availability_zones.available.names[0]
   map_public_ip_on_launch = true
   depends_on = [
@@ -206,7 +203,6 @@ resource "aws_subnet" "pb-subnet-2" {
   tags = {
     Name = "Public Subnet 02"
   }
-  #checkov:skip=CKV_AWS_130:Public subnet
   availability_zone       = data.aws_availability_zones.available.names[1]
   map_public_ip_on_launch = true
   depends_on = [
@@ -287,7 +283,6 @@ resource "aws_launch_configuration" "be-as-conf" {
 }
 
 resource "aws_autoscaling_group" "asg" {
-  #checkov:skip=CKV_AWS_153:For this lab no need for ASG tagging
 
   name                      = "backend-asg"
   launch_configuration      = aws_launch_configuration.be-as-conf.name
@@ -315,8 +310,6 @@ resource "aws_autoscaling_group" "asg" {
 
 resource "aws_lb" "be-elb" {
 
-  #   #checkov:skip=CKV_AWS_127:no need for SSL
-  #   #checkov:skip=CKV_AWS_92:For this lab no need for flow logging
   name               = "be-elb"
   internal           = false
   load_balancer_type = "application"
@@ -388,10 +381,6 @@ resource "aws_instance" "jumpbox" {
     aws_security_group.allow_http
   ]
 
-  #checkov:skip=CKV_AWS_126:For this lab no need for flow logging
-
-
-  #checkov:skip=CKV_AWS_88:Public EC2
 }
 data "aws_instances" "nodes" {
   depends_on = [aws_autoscaling_group.asg]
